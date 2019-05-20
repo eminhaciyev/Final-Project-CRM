@@ -1,0 +1,46 @@
+﻿@model IEnumerable<WhyChooseUs>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">IconClass</th>
+                    <th scope="col">Title_En</th>
+                    <th scope="col">Title_Az</th>
+                    <th scope="col">Title_Ru</th>
+                    <th scope="col">Description_En</th>
+                    <th scope="col">Description_Az</th>
+                    <th scope="col">Description_Ru</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var chooseUs in Model)
+                {
+                <tr>
+                    <th scope="row">@chooseUs.Id</th>
+                    <td>@chooseUs.IconClass</td>
+                    <td>@chooseUs.Title</td>
+                    <td>@chooseUs.Title_Az</td>
+                    <td>@chooseUs.Title_Ru</td>
+                    <td>@chooseUs.Description</td>
+                    <td>@chooseUs.Description_Az</td>
+                    <td>@chooseUs.Description_Ru</td>
+                    <td><a class="btn btn-outline-warning" href="@Url.Action("Edit", "WhyChooseUs", new { area="Admin", chooseUs.Id })">Edit</a></td>
+                    <td><a class="btn btn-outline-danger" href="@Url.Action("Delete", "WhyChooseUs", new { area="Admin", chooseUs.Id })">Delete</a></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        <a asp-controller="WhyChooseUs" asp-action="Create" class="btn btn-outline-success"><i class="fas fa-plus"></i> Create</a>
+    </div>
+</div>
+

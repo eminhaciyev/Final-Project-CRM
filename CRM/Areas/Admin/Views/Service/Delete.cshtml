@@ -1,0 +1,35 @@
+﻿@model Complaint
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <h2>Delete</h2>
+        <div class="alert alert-danger" role="alert">
+            Bu postu silmək istədiyinizə əminsiziniz??
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Message</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <th scope="row">@Model.Id</th>
+                    <td>@Model.Fullname</td>
+                    <td>@Model.Email</td>
+                    <td>@Model.Subject</td>
+                    <td><textarea>@Model.Message</textarea></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-danger"> Delete</button>
+    </form>
+</div>

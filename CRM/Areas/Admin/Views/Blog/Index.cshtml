@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Blog>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Title_Az</th>
+                    <th scope="col">Title_Ru</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Description_Az</th>
+                    <th scope="col">Description_Ru</th>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody> 
+                @foreach (var blog in Model)
+                {
+                    <tr>
+                        <th scope="row">@blog.Id</th>
+                        <td>@blog.Title</td>
+                        <td>@blog.Title_Az</td>
+                        <td>@blog.Title_Ru</td>
+                        <td>@blog.Date</td>
+                        <td>@blog.Description</td>
+                        <td>@blog.Description_Az</td>
+                        <td>@blog.Description_Ru</td>
+                        <td><img src="~/img/@blog.Image" width="60" /></td>
+                        <td><a class="btn btn-outline-warning" href="@Url.Action("Edit", "Blog", new { area="Admin", blog.Id })">Edit</a></td>
+                        <td><a class="btn btn-outline-danger" href="@Url.Action("Delete", "Blog", new { area="Admin", blog.Id })">Delete</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a asp-controller="Blog" asp-action="Create" class="btn btn-outline-success"><i class="fas fa-plus"></i> Create</a>
+    </div>
+</div>
+

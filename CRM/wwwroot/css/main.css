@@ -1,0 +1,311 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+header {
+  width: 100%;
+  height: auto;
+  min-height: 140px;
+  overflow: hidden;
+}
+header .col-md-12 {
+  width: 100%;
+  min-height: 70px;
+  height: auto;
+}
+header .contact {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+header .contact .row .logo {
+  width: 45%;
+  min-height: 70px;
+  height: auto;
+}
+header .contact .row .logo .logoItem {
+  margin-left: 28%;
+  margin-top: 20px;
+}
+header .contact .row .contact_adress {
+  width: 45%;
+  height: 70px;
+}
+header .contact .row .contact_adress .row .col-md-4 .item {
+  margin-top: 10px;
+  width: 224px;
+  height: 40px;
+}
+header .contact .row .contact_adress .row .col-md-4 span {
+  color: gray;
+  font-size: 13px;
+}
+header .contact .row .contact_adress .row .col-md-4 a {
+  color: black;
+  text-decoration: none;
+}
+header .contact .row .contact_adress .row .col-md-4 .iconElem {
+  float: left;
+  margin: 9px 21px;
+}
+header .contact .row .contact_adress .row .col-md-4 .iconElem i {
+  font-size: 30px;
+}
+
+.menu {
+  background-color: #202c38;
+}
+.menu .hiding_menu {
+  display: none;
+}
+.menu .hiding_menu .menu_button {
+  background: no-repeat;
+  border: 2px solid;
+  margin: 10px;
+}
+.menu .hiding_menu .hm_item .card {
+  background: #202c38;
+}
+.menu .hiding_menu .hm_item .card ul li {
+  float: none;
+}
+.menu .hiding_menu .hm_item .card ul li a {
+  color: white;
+}
+    .menu .row .navbar ._about{
+        display:none;
+    }
+._about{
+    display:none;
+}
+.menu .row .navbar {
+    width: 65%;
+    margin-top: 20px;
+    margin-left: 10%;
+}
+.menu .row .navbar li {
+  height: 14px;
+}
+.menu .row .navbar li a {
+  text-decoration: none;
+  color: #d8dcdf;
+  transition: all 0.3s ease;
+}
+    .menu .row .navbar li a:hover {
+        color: #f8ffff;
+        font-size: 22px;
+        filter: blur(0px);
+        text-shadow: 2px 1px 7px #2b2bdb;
+    }
+
+.register_items .col-md-6 {
+  width: auto;
+}
+
+.heading_register_items {
+  margin-right: 0px !important;
+}
+.heading_register_items .row {
+  margin-right: 0 !important;
+  margin-top: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+}
+.heading_register_items .row .col-md-6 {
+  padding-right: 0 !important;
+  padding-left: 6px !important;
+}
+
+.menu_icon {
+  font-size: 26px;
+}
+
+@media screen and (max-width: 1220px) {
+  .menu .row .navbar {
+    width: 88%;  }
+}
+@media screen and (max-width: 1100px) {
+  .contact_adress .col-md-4 .item .for_adress {
+    display: none;
+  }
+
+  .menu_items ul {
+    padding-left: 0px !important;
+  }
+}
+@media screen and (max-width: 768px) {
+  .contact_icons {
+    display: none;
+  } 
+
+  .menu_items ul {
+    padding-left: 0px !important;
+  }
+    .slider_elements h1 {
+        font-size: 30px;
+        font-family: 'Yeon Sung', cursive;
+    }  
+}
+@media screen and (max-width: 480px) {
+  .md_register_items {
+    display: none;
+  }
+
+  .contact_icons {
+    display: block;
+  }
+
+  .menu_items .navbar {
+    display: none;
+  }
+
+  .hiding_menu {
+    display: block !important;
+  }
+
+  .sign_button {
+    width: 100% !important;
+  }
+}
+.logo {
+  min-height: 120px;
+}
+
+#slider {
+  height: 340;
+}
+
+#slider {
+  width: 100%;
+  height: 607px;
+  overflow: hidden;
+  position: relative;
+}
+#slider .overlay {
+  width: 100%;
+  height: 100%;
+  background: black;
+  position: absolute;
+  opacity: 0.6;
+  z-index: 1;
+}
+    #slider .carousel .carousel-inner .carousel-item .slider_elements {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        z-index: 2;
+    }
+        #slider .carousel .carousel-inner .carousel-item .slider_elements h1 {
+            color: #d2d2d2;
+            font-family: 'Kalam', cursive;
+        }
+#slider .carousel .carousel-inner .carousel-item .slider_elements .slider_button {
+  margin-top: 80px;
+  background: #52845d;
+}
+
+.w-100 {
+  width: 100%;
+  height: 607px;
+}
+
+@media screen and (max-width: 480px) {
+  #slider {
+    height: 340px;
+  }
+  #slider #carouselExampleIndicators {
+    height: 100%;
+  }
+  #slider #carouselExampleIndicators .slider_elements {
+    top: 20%;
+    left: 32%;
+  }
+}
+#packet {
+  width: 100%;
+  height: auto;
+  padding-bottom: 5rem;
+}
+#packet .container {
+  height: 100%;
+  width: 100%;
+}
+#packet .container .row .col-md-12 {
+  margin-top: 4%;
+}
+#packet .container .row .col-md-12 h2 {
+  text-align: center;
+  margin: 26px;
+  height: 50px;
+  font-family: 'Cantarell', sans-serif;
+  transition: all 0.6s ease;
+}
+#packet .container .row .col-md-12 h2:hover {
+  text-shadow: 19px 20px 5px grey;
+  font-size: 45px;
+}
+#packet .container .row .packages .item {
+  border-radius: 5px;
+  box-shadow: 13px 10px 20px 6px #c2c2c2;
+  transition: all 0.4s ease;
+}
+#packet .container .row .packages .item:hover {
+  box-shadow: 3px 1px 20px 0px #c2c2c2;
+}
+#packet .container .row .packages .item .package_items {
+  margin-top: 10%;
+  margin-left: 46px;
+}
+#packet .container .row .packages .item .package_items h3 {
+  font-family: 'Cantarell', sans-serif;
+}
+#packet .container .row .packages .item .package_items i {
+  color: green;
+  font-size: 50px;
+  margin: 22px 30%;
+  transition: all 0.4s ease;
+}
+#packet .container .row .packages .item .package_items button {
+  margin: 10% 25%;
+}
+#packet .container .row .packages .item .package_items span {
+  font-family: 'Cantarell', sans-serif;
+  color: grey;
+  margin: 0% 32%;
+  font-size: 23px;
+}
+.isliked{
+    color:blue;
+}
+/*# sourceMappingURL=main.css.map */
+@media screen and (max-width: 400px) {
+    #slider .carousel .carousel-inner .carousel-item .slider_elements h1 {
+        color: #d2d2d2;
+        font-family: 'Kalam', cursive;
+        margin-left: 30%;
+    }
+    .slider_button {
+        margin-left: 10px;
+        width:130px;
+    }
+}
+#up_scroll {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: rgb(75, 75, 70);
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+    opacity: 0.9;
+}

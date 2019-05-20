@@ -1,0 +1,134 @@
+@import '_whychooseus';
+@import '_about';
+@import '_contact';
+@import '_blog';
+@import '_service';
+
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    
+}
+
+
+    .testimonial-img-one{
+        width: 95px;
+        height: 95px;
+        border-radius: 50%;
+        border: none;
+        margin-top: 40px;
+        outline-style: none;
+    }
+    .testimonials-header{
+        font-size: 2rem;
+    }
+    #testimonials{
+        background: rgb(228, 224, 224);
+        padding: 7em 0;
+        padding: 7em 0;
+        background: #fbfbfb;
+        box-shadow:  -1px 1px 20px 3px rgb(202, 202, 202);
+        transition:  all 0.4s ease;
+        &:hover{
+            transition:  all 0.4s ease;
+            box-shadow:  -1px 1px 20px 3px grey;
+        }
+    }
+    .indicator{
+        display: flex;
+        justify-content: end;        
+    }
+    .indicator li{
+        width: 15px;
+        border-radius: 50%;
+        height: 15px;
+    }
+    .testimonials-header{
+        text-align: center;
+    }
+    .left-icon{
+        font-size: 30px;
+        color: black;
+    }
+    .right-icon{
+        font-size: 30px;
+        color: black;
+    }
+    .slider-contents{
+        text-align: center;
+    }
+    .indicator{
+       margin-top: 15px;
+    }
+    .lorem{
+        margin-top: 20px;
+    }
+    #footer {
+        li,li a{
+          color:  #148a91 !important;
+          transition: all 0.3s ease-in;
+          &:hover{
+            color:  #1febf7 !important;
+          }
+        }
+        background: #292c30;
+        padding: 7em 0;
+        .navigations {
+            color: #EAEBEB;
+        }       
+
+        .navigations-properties li {
+            list-style: none;
+        }
+
+        .navigations-properties li a {
+            color: #bbe7e1;
+            text-decoration: none;
+            cursor: pointer;
+            &:hover {
+                color: white;
+            }
+        }
+
+        .avenue{
+            color: #EAEBEB;                      
+        }
+
+        .avenue-properties li{
+            color: #bbe7e1;
+            cursor: pointer;
+            &:hover {
+                color: white;
+            }
+        }
+        
+        .avenue-contact-properties li{
+            color: #bbe7e1;
+        }
+
+        .author{
+            display: flex;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        @media (min-width: 0px) and (max-width: 576px) { 
+            .avenue-contact{
+                margin-top: 20px;
+            }
+
+            .author{
+                display: flex;
+                justify-content: start;
+            }
+        }
+
+        @media (min-width: 576px) and (max-width: 765px) { 
+            .avenue-contact{
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }

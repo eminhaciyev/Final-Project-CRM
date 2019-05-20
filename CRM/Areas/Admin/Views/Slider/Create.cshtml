@@ -1,0 +1,59 @@
+﻿@model CRM.Models.Slider
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<div class="container">
+    <div class="row">
+        <form method="post" enctype="multipart/form-data" style="margin-left: 15px;">
+            <h2>Create</h2>
+            <div class="form-group">
+                @*<label asp-for="Title"></label>
+                <input type="text" class="form-control" placeholder="Title_En" />
+                <span asp-validation-for="Title"></span>*@
+                @Html.LabelFor(s => s.Title)
+                @Html.TextBoxFor(s => s.Title, new { @class="form-control", type="text", placeholder="Title_En" })
+                @Html.ValidationMessageFor(s => s.Title, null, new { @class="text-danger" })
+            </div>
+
+            <div class="form-group">
+                @*<label asp-for="TitleAz"></label>
+        <input type="text" class="form-control" placeholder="Title_Az" />
+        <span asp-validation-for="TitleAz"></span>*@
+
+                @Html.LabelFor(s => s.TitleAz)
+                @Html.TextBoxFor(s => s.TitleAz, new { @class = "form-control", type = "text", placeholder = "Title_Az" })
+                @Html.ValidationMessageFor(s => s.TitleAz, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @*<label asp-for="TitleRu"></label>
+        <input type="text" class="form-control" placeholder="Title_Ru" />
+        <span asp-validation-for="TitleRu"></span>*@
+
+                @Html.LabelFor(s => s.TitleRu)
+                @Html.TextBoxFor(s => s.TitleRu, new { @class = "form-control", type = "text", placeholder = "Title_Ru" })
+                @Html.ValidationMessageFor(s => s.TitleRu, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @*<label asp-for="Photo"></label>
+        <input type="file" class="form-control" accept="image/*" />
+        <span asp-validation-for="Photo"></span>*@
+
+                @Html.LabelFor(s => s.Photo)
+                @Html.TextBoxFor(s => s.Photo, new { @class = "form-control", type = "file", accept = "image/*"})
+                @Html.ValidationMessageFor(s => s.Photo, null, new { @class = "text-danger" })
+            </div>
+            <input type="submit" class="btn btn-outline-success" value="Create" />
+        </form>
+
+    </div>
+</div>
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}

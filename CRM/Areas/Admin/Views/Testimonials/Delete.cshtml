@@ -1,0 +1,75 @@
+﻿@model CRM.Models.InnerModel.Testimonial
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<div class="container">
+    <div class="row">
+        <form method="post" enctype="multipart/form-data" style="margin-left: 15px;">
+            <h2>Edit</h2>
+            <div class="alert alert-danger" role="alert">
+                Bu postu silmək istədiyinizə əminsiziniz??
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(s => s.FullName)
+                @Html.TextBoxFor(s => s.FullName, new { @class = "form-control", type = "text", placeholder = "Title_En", @readonly="" })
+                @Html.ValidationMessageFor(s => s.FullName, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(s => s.Profession)
+                @Html.TextBoxFor(s => s.Profession, new { @class = "form-control", type = "text", placeholder = "Profession_En", @readonly = "" })
+                @Html.ValidationMessageFor(s => s.Profession, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(s => s.Profession_Az)
+                @Html.TextBoxFor(s => s.Profession_Az, new { @class = "form-control", type = "text", placeholder = "Profession_Az", @readonly = "" })
+                @Html.ValidationMessageFor(s => s.Profession_Az, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(s => s.Profession_Ru)
+                @Html.TextBoxFor(s => s.Profession_Ru, new { @class = "form-control", type = "text", placeholder = "Profession_Ru", @readonly = "" })
+                @Html.ValidationMessageFor(s => s.Profession_Ru, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(s => s.Desc)
+                @Html.TextBoxFor(s => s.Desc, new { @class = "form-control", type = "text", placeholder = "Description_En", @readonly = "" })
+                @Html.ValidationMessageFor(s => s.Desc, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(s => s.Desc_Az)
+                @Html.TextBoxFor(s => s.Desc_Az, new { @class = "form-control", type = "text", placeholder = "Description_Az", @readonly = "" })
+                @Html.ValidationMessageFor(s => s.Desc_Az, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(s => s.Desc_Ru)
+                @Html.TextBoxFor(s => s.Desc_Ru, new { @class = "form-control", type = "text", placeholder = "Description_Ru", @readonly = "" })
+                @Html.ValidationMessageFor(s => s.Desc_Ru, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(s => s.Photo)
+                @Html.TextBoxFor(s => s.Photo, new { @class = "form-control", type = "file", accept = "image/*" })
+                @Html.ValidationMessageFor(s => s.Photo, null, new { @class = "text-danger" })
+            </div>
+            <input type="submit" class="btn btn-outline-success" value="Delete" />
+        </form>
+
+    </div>
+</div>
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
+
+
+

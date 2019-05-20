@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Slider>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Title_Az</th>
+                    <th scope="col">Title_En</th>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var slider in Model)
+                {
+                <tr>
+                    <th scope="row">@slider.Id</th>
+                    <td>@slider.Title</td>
+                    <td>@slider.TitleAz</td>
+                    <td>@slider.TitleRu</td>
+                    <td><img src="~/img/@slider.Image" width="60" /></td>
+                    <td><a class="btn btn-outline-warning" href="@Url.Action("Edit", "Slider", new { area="Admin", slider.Id })">Edit</a></td>
+                    <td><a class="btn btn-outline-danger" href="@Url.Action("Delete", "Slider", new { area="Admin", slider.Id })">Delete</a></td>
+                </tr>
+                }
+
+            </tbody>
+        </table>
+        <a asp-controller="Slider" asp-action="Create" class="btn btn-outline-success"><i class="fas fa-plus"></i> Create</a>
+    </div>
+</div>
+

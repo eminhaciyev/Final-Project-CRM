@@ -1,0 +1,51 @@
+﻿@model List<CV>
+
+@{
+    ViewData["Title"] = "CV_Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<div class="container">
+<h2>CV</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">About you</th>
+                <th scope="col">CV file</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@item.Fullname</td>
+                <td>@item.Email</td>
+                <td><textarea>@item.Description</textarea></td>
+                
+                <td>
+                    @if (item.CV_Name.Contains(".pdf") || item.CV_Name.Contains(".PDF") || item.CV_Name.Contains(".doc") ||
+                       item.CV_Name.Contains(".DOC") || item.CV_Name.Contains(".docx") || item.CV_Name.Contains(".DOCX") ||item.CV_Name.Contains(".pptx") || item.CV_Name.Contains(".PPTX"))
+                    {
+                        <a href="~/img/@item.CV_Name">Cv pdf file</a>
+                    }
+                    else
+                    {
+                        <img src="~/img/@item.CV_Name" width="60" />
+                    }
+                </td>
+
+                <td>  <a asp-controller="Service" asp-action="DeleteCV" asp-route-Id="@item.Id" class="btn btn-danger">Delete</a></td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+

@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "ErrorPage";
+    Layout = null;
+}
+
+@* Warning page start *@
+
+<div class="warning_img" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);">
+    <img src="~/img/warning.png" width="200" />
+</div>
+
+<h1 style="font-size: 25px; color: #F39C12; text-align: center;">WARNING!</h1>
+
+<h4 style="text-align:center;">Qeydiyyatdan keçdiyiniz Email ilə qeyd etdiyiniz Email ilə <a asp-controller="Home" asp-action="Service">uyğun deyil</a>. Xahiş olunur düzgün yığasınız!!</h4>
+
+@* Warning page end *@

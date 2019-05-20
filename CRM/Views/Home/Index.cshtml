@@ -1,0 +1,547 @@
+﻿@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+
+@inject IViewLocalizer Localizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
+@model CRM.Models.ViewModel.ViewModelClasses
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@* Register form start*@
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">@Localizer["register"]</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <section id="sign_section">
+                    <div class="row">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="col-md-12 form_past col-lg-12">
+                            <div class="item">
+
+                                <h2 class="">@Localizer["register"]</h2>
+                                <form method="post" asp-controller="Account" asp-action="Register" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">@Localizer["fullname"]</label>
+                                        <input type="text" name="FullName" class="form-control" id="fullname_register"
+                                               placeholder="@Localizer["enterfullname"]">
+                                        <span asp-validation-for="RegisterModel.FullName" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">@Localizer["email"]</label>
+                                        <input type="email" name="UserEmail" class="form-control" id="emailaddress_register"
+                                               aria-describedby="emailHelp" placeholder="@Localizer["enteremail"]">
+                                        <span asp-validation-for="RegisterModel.UserEmail" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="birthday">@Localizer["birthdate"]</label>
+                                        <input type="date" name="BirthDate" class="form-control" id="bithday_register"
+                                               aria-describedby="birthday" placeholder="BirthDate">
+                                        <span asp-validation-for="RegisterModel.BirthDate" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">@Localizer["password"]</label>
+                                        <input type="password" name="Password" class="form-control" id="password_register"
+                                               placeholder="@Localizer["password"]">
+                                        <span asp-validation-for="RegisterModel.Password" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">@Localizer["confirmpassword"]</label>
+                                        <input type="password" name="ComfirmPassword" class="form-control" id="confirmpassword_register"
+                                               placeholder="@Localizer["confirmpassword"]">
+                                        <span asp-validation-for="RegisterModel.ComfirmPassword" class="text-danger"></span>
+                                    </div>
+                                    <input type="submit" id="registerButton" class="btn btn-success" value="@Localizer["register"]" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+@* Register form end *@
+
+@* SignIn form start*@
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">@Localizer["signin"]</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <section id="sign_section">
+                    <div class="row">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="col-md-12 form_past col-lg-12">
+                            <div class="item">
+                                <h2 class="">@Localizer["signin"]</h2>
+                                <form method="post" asp-controller="Account" asp-action="LoginUser">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">@Localizer["email"]</label>
+                                        <input type="email" asp-for="LoginModel.UserEmail" class="form-control" id="exampleInputEmail1"
+                                               aria-describedby="emailHelp" placeholder="@Localizer["enteremail"]">
+                                        <span asp-validation-for="LoginModel.UserEmail" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">@Localizer["password"]</label>
+                                        <input type="password" asp-for="LoginModel.Password" class="form-control" id="exampleInputPassword1"
+                                               placeholder="@Localizer["password"]">
+                                        <span asp-validation-for="LoginModel.Password" class="text-danger"></span>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox"> @Localizer["rememberme"]</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-success"> @Localizer["login"]</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+    </div>
+</div>
+@* SignIn form start*@
+
+@*Slider section Start *@
+<section id="slider">
+    <div id="carouselExampleIndicators" class="carousel slide carousel-fade " data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            @{ var id = 0;}
+            @foreach (var slider in Model.Sliders)
+            {
+                <div class="carousel-item @(id == 0 ? "active" : " ") ">
+                    <div class="overlay"></div>
+                    <div class="slider_elements">
+                        <h1>
+                            @if (ViewBag.lang == "az")
+                            {
+                                @slider.TitleAz
+
+                            }
+                            else if (ViewBag.lang == "en")
+                            {
+                                @slider.Title
+                            }
+                            else
+                            {
+                                @slider.TitleRu
+                            }
+                        </h1>
+                        <button class="btn slider_button btn-success" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width: 170px;">
+                            @if (ViewBag.lang == "az")
+                            {
+                                <span>Bizimlə əlaqə</span>
+                            }
+                            else if (ViewBag.lang == "en")
+                            {
+                                <span>Contact Us</span>
+                            }
+                            else
+                            {
+                                <span>Связаться с нами</span>
+                            }
+                        </button>
+                    </div>
+                    <img class="d-block w-100" src="~/img/@slider.Image" style="object-fit:cover; object-position: center center;" alt="slider-images">
+                </div>
+
+                ++id;
+            }
+
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</section>
+<!-- Slider section End-->
+@*PAY WITH CARD Start*@
+<section class="modal fade" id="packet_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">PAY WITH CARD</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="pay_card" style="text-align: center;">
+                    <h3 class="fill-your-cv">PAY WITH CARD</h3>
+                    <form action="">
+                        <div class="form-group">
+                            <label for="name">FULLNAME</label>
+                            <input type="text" class="form-cv-input buypackege" required name="name" id="name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cv-card"> 3 DIGITS CV OF YOUR CARD</label>
+                            <input type="text" minlength="3" maxlength="3" class="form-cv-card buypackege" required name="cvcard" id="cvcard">
+                        </div>
+                        <div class="form-group">
+                            <label for="digitcard">16 DIGITS OF YOUR CARD</label>
+                            <input type="text" min="16" max="16" class="form-cv-card buypackege" required name="digitcard" id="digitcard">
+                        </div>
+                        <input type="button" class="btn btn-outline-success buynow" value="PAY" name="" id="">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@*PAY WITH CARD End*@
+
+<!-- Packet section start  -->
+<section id="packet">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>@Localizer["packages"]</h2>
+                <button id="up_scroll" title="Go to up">
+                    <i class="fas fa-angle-up"></i>
+                </button>
+            </div>
+            <div class="col-md-4  packages col-sm-12 col-md-6 col-lg-4 col-xs-12">
+                <div class="item">
+                    <div class="package_items">
+                        <i class="far fa-paper-plane"></i>
+                        <h3>300 mb @Localizer["permonth"]</h3>
+                        <span>10 azn</span>
+                        <button class="btn btn-outline-success pack_button" data-toggle="modal"
+                                data-target="#packet_modal">
+                            Buy now
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4 packages col-sm-12 col-md-6 col-lg-4 col-xs-12">
+                <div class="item">
+                    <div class="package_items">
+                        <i class="fas fa-fighter-jet"></i>
+                        <h3>300 mb @Localizer["permonth"]</h3>
+                        <span>15 azn</span>
+                        <button class="btn btn-outline-success pack_button" data-toggle="modal"
+                                data-target="#packet_modal">
+                            Buy now
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4 packages col-sm-12 col-md-6 col-lg-4 col-xs-12">
+                <div class="item">
+                    <div class="package_items">
+                        <i class="fas fa-fire-alt"></i>
+                        <h3>300 mb @Localizer["permonth"]</h3>
+                        <span>35 azn</span>
+                        <button class="btn btn-outline-success pack_button" data-toggle="modal"
+                                data-target="#packet_modal">
+                            Buy now
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4 packages col-sm-12 col-md-6 col-lg-4 col-xs-12">
+                <div class="item">
+                    <div class="package_items">
+                        <i class="fas fa-fire-alt"></i>
+                        <h3>300 mb @Localizer["permonth"]</h3>
+                        <span>20 azn</span>
+                        <button class="btn btn-outline-success pack_button" data-toggle="modal"
+                                data-target="#packet_modal">
+                            Buy now
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-4 packages col-sm-12 col-md-6 col-lg-4 col-xs-12">
+                <div class="item">
+                    <div class="package_items">
+                        <i class="fas fa-fire-alt"></i>
+                        <h3>300 mb @Localizer["permonth"]</h3>
+                        <span>50 azn</span>
+                        <button class="btn btn-outline-success pack_button" data-toggle="modal"
+                                data-target="#packet_modal">
+                            Buy now
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-4 packages col-sm-12 col-md-6 col-lg-4 col-xs-12">
+                <div class="item">
+                    <div class="package_items">
+                        <i class="fas fa-fire-alt"></i>
+                        <h3>300 mb @Localizer["permonth"]</h3>
+                        <span>70 azn</span>
+                        <button class="btn btn-outline-success pack_button" data-toggle="modal"
+                                data-target="#packet_modal">
+                            Buy now
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--  Packet section end -->
+<!-- About start -->
+<section id="about">
+    <div class="container">
+        <div class="row">
+            <div class="about-content col-12 col-sm-12 col-md-12 col-lg-12">
+                <h4>@Localizer["about"]</h4>
+            </div>
+            <div class="company-name col-12 col-sm-12 col-md-12 col-lg-12">
+                <h3>ICT SERVICE AZERBAIJAN</h3>
+            </div>
+            <div class="company-phone col-12 col-sm-12 col-md-12 col-lg-12">
+                <i class="fas fa-phone"></i>
+                <p>+994 51 300 77 99 | +994 55 379 54 33</p>
+            </div>
+            <div class="company-name col-12 col-sm-12 col-md-12 col-lg-12">
+                <p>
+                    @if (ViewBag.lang == "az")
+                    {
+                        @Model.About.Description_Az;
+                    }
+                    else if (ViewBag.lang == "en")
+                    {
+                        @Model.About.Description
+                    }
+                    else
+                    {
+                        @Model.About.Description_Ru
+                    }
+
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <!--</div>-->
+</section>
+<!-- About end -->
+<!-- Why Choose Us (start) -->
+<section id="whychooseus">
+    <div class="container">
+        <div class="row">
+            <div class=" whychooseus-header col-12 col-sm-12 col-md-12 ">
+                <h4>@Localizer["whychooseus"]</h4>
+            </div>
+
+            @foreach (var chooseUs in Model.WhyChooseUs)
+            {
+                <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                    <div class="whychooseus-border">
+                        <div class="high-quality-header">
+                            <span><i class="@chooseUs.IconClass"></i></span>
+                            <h5 class="content-header">
+                                @if (ViewBag.lang == "az")
+                                {
+                                    @chooseUs.Title_Az
+                                }
+                                else if (ViewBag.lang == "en")
+                                {
+                                    @chooseUs.Title
+                                }
+                                else
+                                {
+                                    @chooseUs.Title_Ru
+                                }
+
+                            </h5>
+                        </div>
+                        <p class="content">
+                            @if (ViewBag.lang == "az")
+                            {
+                                @chooseUs.Description_Az
+                            }
+                            else if (ViewBag.lang == "en")
+                            {
+                                @chooseUs.Description
+                            }
+                            else
+                            {
+                                @chooseUs.Description_Ru
+                            }
+                        </p>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</section>
+<!-- Why Choose Use (end)-->
+<!-- Testimonials start -->
+<section id="testimonials">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+                    <!-- -- -->
+                    <h4 class="testimonials-header">@Localizer["testimonials"]</h4>
+                    <div class="carousel-inner slider-contents">
+                        <ol class="carousel-indicators indicator">
+                            <li data-target="#carouselExampleIndicators2" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators2" data-slide-to="1"></li>
+                            <!-- <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
+                        </ol>
+                        @{ var plus = 0; }
+                        @foreach (var testimonial in Model.Testimonials)
+                        {
+                            <div class="carousel-item @(plus == 0 ? "active" : "") ">
+                                <button class="testimonial-img-one">
+                                    <img src="~/img/@testimonial.Image" style="border-radius: 50%;" class="img-fluid"
+                                         alt="testimonal">
+                                </button>
+
+                                <h5 class="testimonal-name">@testimonial.FullName</h5>
+                                <h4 class="testimonial-profession">
+                                    @if (ViewBag.lang == "az")
+                                    {
+                                        @testimonial.Profession_Az
+                                    }
+                                    else if (ViewBag.lang == "en")
+                                    {
+                                        @testimonial.Profession
+                                    }
+                                    else
+                                    {
+                                        @testimonial.Profession_Ru
+                                    }
+                                </h4>
+
+                                <p class="lorem">
+                                    @if (ViewBag.lang == "az")
+                                    {
+                                        @testimonial.Desc_Az
+                                    }
+                                    else if (ViewBag.lang == "en")
+                                    {
+                                        @testimonial.Desc
+                                    }
+                                    else
+                                    {
+                                        @testimonial.Desc_Ru
+                                    }
+                                </p>
+                            </div>
+                            ++plus;
+                        }
+
+
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators2" role="button"
+                       data-slide="prev">
+                        <span aria-hidden="true"><i class="fas fa-chevron-circle-left left-icon"></i></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators2" role="button"
+                       data-slide="next">
+                        <span aria-hidden="true">
+                            <i class="fas fa-chevron-circle-right right-icon"></i>
+                        </span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Testimonials end -->
+@* About nav "display: block only in Index(Home) page  (start)" *@
+@if (ViewBag.aboutPage == "About")
+{
+    <style>
+        ._about {
+            display: block !important;
+        }
+    </style>
+}
+@* About nav "display: block only in Index(Home) page  (end)" *@
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    @* Buy Internet packet (swal) *@
+    <script>
+        $(document).ready(function () {
+            $(".buynow").click(function (e) {
+                console.log($("#name").val())
+                $.ajax({
+                    method: "POST",
+                    url: "/Home/BuyNow/",
+                    data: {
+                        fullname: $("#name").val(),
+                        cvnumber: $("#cvcard").val(),
+                        digitcard: $("#digitcard").val()
+                    },
+
+                    success: function (res) {
+                        if (res.status == "200") {
+                            swal({
+                                title: "Təşəkkür edirik!",
+                                text: "Siz bizim internet paketindən yararlandınız!",
+                                icon: "success",
+                            });
+                        }
+                        else if (res.status == "404") {
+                            swal({
+                                title: "Warning!",
+                                text: "Zəhmət olmasa verilmiş xanaları dolurun!",
+                                icon: "warning",
+                                buttons: true,
+                                dangerMode: true,
+                            })
+                        }
+                    }
+                })
+            })
+        })
+    </script>
+}
+
+
+

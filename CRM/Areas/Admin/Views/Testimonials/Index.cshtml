@@ -1,0 +1,48 @@
+﻿@model IEnumerable<CRM.Models.InnerModel.Testimonial>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Profession_En</th>
+                    <th scope="col">Profession_Az</th>
+                    <th scope="col">Profession_Ru</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Description_Az</th>
+                    <th scope="col">Description_Ru</th>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var testimonial in Model)
+                {
+                <tr>
+                    <th scope="row">@testimonial.Id</th>
+                    <td>@testimonial.FullName</td>
+                    <td>@testimonial.Profession</td>
+                    <td>@testimonial.Profession_Az</td>
+                    <td>@testimonial.Profession_Ru</td>
+                    <td>@testimonial.Desc</td>
+                    <td>@testimonial.Desc_Az</td>
+                    <td>@testimonial.Desc_Ru</td>
+                    <td><img src="~/img/@testimonial.Image" width="60" /></td>
+                    <td><a class="btn btn-outline-warning" href="@Url.Action("Edit", "Testimonials", new { area="Admin", testimonial.Id })">Edit</a></td>
+                    <td><a class="btn btn-outline-danger" href="@Url.Action("Delete", "Testimonials", new { area="Admin", testimonial.Id })">Delete</a></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        <a asp-controller="Testimonials" asp-action="Create" class="btn btn-outline-success"><i class="fas fa-plus"></i> Create</a>
+    </div>
+</div>
+

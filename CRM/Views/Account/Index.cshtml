@@ -1,0 +1,61 @@
+﻿@model CRM.Models.RegisterModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container">
+    <div class="row">
+        <section id="sign_section">
+            <div class="row">
+                <div class="col-md-12 form_past col-lg-12">
+                    <div class="item">
+                    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+                        <h2 class="">REGISTER</h2>
+                        <form method="post" asp-controller="Account" asp-action="Register" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Full name</label>
+                                <input type="text" name="FullName" class="form-control" id="fullname_register"
+                                       placeholder="Enter Fullname">
+                                <span asp-validation-for="FullName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email address</label>
+                                <input type="email" name="UserEmail" class="form-control" id="emailaddress_register"
+                                       aria-describedby="emailHelp" placeholder="Enter Email">
+                                <span asp-validation-for="UserEmail" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="birthday">BirthDate</label>
+                                <input type="date" name="BirthDate" class="form-control" id="bithday_register"
+                                       aria-describedby="birthday" placeholder="BirthDate">
+                                <span asp-validation-for="BirthDate" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" name="Password" class="form-control" id="password_register"
+                                       placeholder="Password">
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Confirm Password</label>
+                                <input type="password" name="ComfirmPassword" class="form-control" id="confirmpassword_register"
+                                       placeholder="Confirm Password">
+                                <span asp-validation-for="ComfirmPassword" class="text-danger"></span>
+                            </div>
+                            <input type="submit" id="registerButton" class="btn btn-success" value="Register" />
+                        </form>
+
+                      
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+</div>

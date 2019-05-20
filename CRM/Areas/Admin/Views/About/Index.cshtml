@@ -1,0 +1,39 @@
+﻿@model IEnumerable<About>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">DescriptionAz</th>
+                    <th scope="col">DescriptionRu</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var about in Model)
+                {
+                    <tr>
+                        <th scope="row">@about.Id</th>
+                        <td>@about.Description</td>
+                        <td>@about.Description_Az</td>
+                        <td>@about.Description_Ru</td>
+                        <td><a class="btn btn-outline-warning" href="@Url.Action("Edit", "About", new { area="Admin", about.Id })"><i class="fas fa-edit"></i> Edit</a></td>
+                        <td><a class="btn btn-outline-danger" href="@Url.Action("Delete", "About", new { area="Admin", about.Id })"><i class="fas fa-trash-alt"></i> Delete</a></td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        <a asp-controller="About" asp-action="Create" class="btn btn-outline-success"><i class="fas fa-plus"></i> Create</a>
+    </div>
+</div>
+

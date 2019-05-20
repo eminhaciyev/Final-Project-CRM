@@ -1,0 +1,66 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+html{scroll-behavior: smooth;}
+
+::-webkit-scrollbar {
+    width: 10px;
+    transition: background-color .8s;
+
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(206, 206, 47); 
+    border-radius: 40px;
+   
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+
+  }
+#about{
+    background: #fbfbfb;
+    padding: 5rem 0;
+    box-shadow: -2px -1px 20px 0px #d2d0d0;
+    transition:  all 0.4s ease;
+    &:hover{
+        box-shadow: -2px 0px 20px 0px grey;  
+    }
+}
+
+.company-phone{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.company-phone p{
+    color: #444444;
+    font-family: "Lato", sans-serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+.company-phone i{
+    font-size: 15px;
+    transform: scaleX(-1);
+}
+.about-content h4{
+    text-align: center;
+    color: #141414;
+    font-weight: 400;
+}
+.company-name h3{
+    text-align: center;
+    color: #606060;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.company-name p{
+    font-size: 15px;
+}

@@ -1,0 +1,372 @@
+﻿@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+
+@inject IViewLocalizer Localizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
+@model CRM.Models.ViewModel.ViewModelClasses
+@{
+    ViewData["Title"] = "Blog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<div class="preloader" style="width:100%;height:100%;position:fixed;z-index:20;">
+    <img style="width:100%;height:100%" src="~/img/preloader/preload_img.gif" />
+
+</div>*@
+
+@* Register form start *@
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">@Localizer["register"]</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <section id="sign_section">
+                    <div class="row">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="col-md-12 form_past col-lg-12">
+                            <div class="item">
+
+                                <h2 class="">@Localizer["register"]</h2>
+                                <form method="post" asp-controller="Account" asp-action="Register" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">@Localizer["fullname"]</label>
+                                        <input type="text" name="FullName" class="form-control" id="fullname_register"
+                                               placeholder="@Localizer["enterfullname"]">
+                                        <span asp-validation-for="RegisterModel.FullName" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">@Localizer["email"]</label>
+                                        <input type="email" name="UserEmail" class="form-control" id="emailaddress_register"
+                                               aria-describedby="emailHelp" placeholder="@Localizer["enteremail"]">
+                                        <span asp-validation-for="RegisterModel.UserEmail" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="birthday">@Localizer["birthdate"]</label>
+                                        <input type="date" name="BirthDate" class="form-control" id="bithday_register"
+                                               aria-describedby="birthday" placeholder="BirthDate">
+                                        <span asp-validation-for="RegisterModel.BirthDate" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">@Localizer["password"]</label>
+                                        <input type="password" name="Password" class="form-control" id="password_register"
+                                               placeholder="@Localizer["password"]">
+                                        <span asp-validation-for="RegisterModel.Password" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">@Localizer["confirmpassword"]</label>
+                                        <input type="password" name="ComfirmPassword" class="form-control" id="confirmpassword_register"
+                                               placeholder="@Localizer["confirmpassword"]">
+                                        <span asp-validation-for="RegisterModel.ComfirmPassword" class="text-danger"></span>
+                                    </div>
+                                    <input type="submit" id="registerButton" class="btn btn-success" value="@Localizer["register"]" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+@* Register form end *@
+
+@* SignIn form start *@
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">@Localizer["signin"]</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <section id="sign_section">
+                    <div class="row">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="col-md-12 form_past col-lg-12">
+                            <div class="item">
+                                <h2 class="">@Localizer["signin"]</h2>
+                                <form method="post" asp-controller="Account" asp-action="LoginUser">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">@Localizer["email"]</label>
+                                        <input type="email" asp-for="LoginModel.UserEmail" class="form-control" id="exampleInputEmail1"
+                                               aria-describedby="emailHelp" placeholder="@Localizer["enteremail"]">
+                                        <span asp-validation-for="LoginModel.UserEmail" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">@Localizer["password"]</label>
+                                        <input type="password" asp-for="LoginModel.Password" class="form-control" id="exampleInputPassword1"
+                                               placeholder="@Localizer["password"]">
+                                        <span asp-validation-for="LoginModel.Password" class="text-danger"></span>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox"> @Localizer["rememberme"]</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-success"> @Localizer["login"]</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+    </div>
+</div>
+@* SignIn form end *@
+
+<!-- Blog backgroud-image(start) -->
+<section id="blog-background" style="background-image:url('/img/hero_bg_1.jpg');">
+    <div class="container">
+        <div class="row">
+            <div class="text-blog-center col-12 col-sm-12 col-md-12 col-lg-12">
+                <h2>@Localizer["blog"]</h2>
+                <p><a href="#">@Localizer["home"]</a><span class="big-sign">></span><span class="blog-header">@Localizer["blog"]</span></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Blog backgroud-image(end) -->
+
+
+@* Blog section start *@
+<section style="overflow-x:hidden" id="blog"  >
+    <div class="container">
+        <div class="row blog_elements">
+
+            @foreach (var blog in Model.Blogs)
+            {
+                <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                    <div class="card blog-info" style="margin-left: 0; width: 100%!important;">
+                        <a href="/Home/BlogDetails/@(blog.Id)">
+                            <img src="~/img/@blog.Image" class="card-img-top" style="width: 100%; height: 258px;" alt="Card image cap">
+                        </a>
+                        <div class="overlay"></div>
+                        <div class="card-body">
+                            <a href="/Home/BlogDetails/@(blog.Id)" class="card-title">
+                                @if (ViewBag.lang == "az")
+                                {
+                                    @blog.Title_Az
+                                }
+                                else if (ViewBag.lang == "en")
+                                {
+                                    @blog.Title
+                                }
+                                else
+                                {
+                                    @blog.Title_Ru
+                                }
+                            </a>
+                            <div class="date">
+                                <span>BY EM/HÜ • @blog.Date</span>
+                            </div>
+                            @{
+                                string description = "";
+
+                                if (ViewBag.lang == "az")
+                                {
+
+                                    string sentences = blog.Description_Az;
+
+                                    char[] word = new char[] { '.' };
+
+                                    string[] arr = sentences.Split(word, StringSplitOptions.None);
+
+                                    for (int i = 0; i < arr.Length; i++)
+                                    {
+                                        if (i == 0)
+                                        {
+                                            description = arr[0];
+                                            break;
+                                        }
+                                    }
+                                }
+                                else if (ViewBag.lang == "en")
+                                {
+
+                                    string sentences = blog.Description;
+
+                                    char[] word = new char[] { '.' };
+
+                                    string[] arr = sentences.Split(word, StringSplitOptions.None);
+
+                                    for (int i = 0; i < arr.Length; i++)
+                                    {
+                                        if (i == 0)
+                                        {
+                                            description = arr[0];
+                                            break;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    string sentences = blog.Description_Ru;
+
+                                    char[] word = new char[] { '.' };
+
+                                    string[] arr = sentences.Split(word, StringSplitOptions.None);
+
+                                    for (int i = 0; i < arr.Length; i++)
+                                    {
+                                        if (i == 0)
+                                        {
+                                            description = arr[0];
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+
+                            <p class="card-text">
+                                @description
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="pages">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-center my-3">
+                <nav aria-label="Page navigation example ">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link move_prev" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+
+                        @{var page = 2; }
+                        @{var skipCount = 0; }
+                        <li data-id="@(skipCount)" class="page-item  page_"><a class="page-link active">1</a></li>
+                        @for (int i = 0; i < ViewBag.blogLength; i++)
+                        {
+                            <li data-id="@(skipCount+=3)" class="page-item page_ "><a class="page-link ">  @(page++) </a></li>
+                        }
+                        <li class="page-item">
+                            <a class="page-link move_next" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+    </div>
+</section>
+@* Blog section end *@
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function (event) {
+
+            // pagenation number
+            $(document).on("click", ".page-item", function () {
+                $(".page-link").css({
+                    "color": "blue",
+                    "background": "white",
+                    "font-weight": "400"
+                })
+
+                $(this).children().css({
+                    "color": "blue",
+                    "background": "#bcffff",
+                    "font-weight":"bold"
+                })
+
+                $(".page-item").removeClass("active");
+                $(this).addClass("active");
+                //////
+
+                $.ajax({
+                    url: "/Home/LoadPage/",
+                    data: { skip: $(this).data("id") },
+                    success: function (ev) {
+
+                        $(".blog_elements").html(ev);
+                    }
+
+                });
+            });
+
+
+            // Previus page
+            $(document).on("click", ".move_prev", function () {
+                $(".page_").css({
+                    "color": "blue",
+                    "background": "white",
+                    "font-weight": "400"
+                })
+                $(this).children().css({
+                    "color": "blue",
+                    "background": "#bcffff",
+                    "font-weight": "bold"
+                })
+
+                var skip_ = $(".active").data("id");
+                skip_ -= 3;
+                $.ajax({
+                    url: "/Home/LoadPage/",
+                    data: { skip: skip_},
+                    success: function (ev) {
+                        $(".blog_elements").html(ev);
+                    }
+
+                });
+            });
+
+            //////
+             $(document).on("click", ".move_next", function () {
+
+                $(".page_").css({
+                    "color": "blue",
+                    "background": "white",
+                    "font-weight": "400"
+                })
+                $(this).children().css({
+                    "color": "blue",
+                    "background": "#bcffff",
+                    "font-weight": "bold"
+                })
+
+                   var skip_ = @ViewBag.blogLength* 3;
+
+                skip_ += 3;
+                $.ajax({
+                    url: "/Home/LoadPage/",
+                    data: { skip: skip_},
+                    success: function (ev) {
+                        $(".blog_elements").html(ev);
+                    }
+
+                });
+
+        });
+            });
+    </script>
+
+    <style>
+        .page_ {
+            cursor: pointer;
+        }
+    </style>
+}
+

@@ -1,0 +1,36 @@
+﻿@model CRM.Models.LoginModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center">Login form</h2>
+                <section id="sign_section">
+                    <div class="row">
+                        <div class="col-md-12 form_past col-lg-12">
+                            <div class="item">
+                            <div class="text-danger" style="text-align:center; font-size: 30px; text-decoration:underline;" asp-validation-summary="ModelOnly"></div>
+                                <h2 class="">SIGN IN</h2>
+                                <form method="post" asp-controller="Account" asp-action="LoginUser" >
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email address</label>
+                                        <input type="email" asp-for="UserEmail" class="form-control" id="exampleInputEmail1"
+                                               aria-describedby="emailHelp" placeholder="Enter Email">
+                                        <span asp-validation-for="UserEmail" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Password</label>
+                                        <input type="password" asp-for="Password" class="form-control" id="exampleInputPassword1"
+                                               placeholder="Password">
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox"> Remember me</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-success">Log In</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+       

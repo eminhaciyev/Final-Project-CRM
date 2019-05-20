@@ -1,0 +1,33 @@
+#sign_section {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+#sign_section .form_past .item {
+  margin-top: 9%;
+  margin-left: 10%;
+  width: 80%;
+  box-shadow: 5px 3px 20px 0px #7e7b7b;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+  background: #f0f1f3;
+}
+#sign_section .form_past .item:hover {
+  box-shadow: 13px 11px 20px 0px #7e7b7b;
+}
+#sign_section .form_past .item form {
+  padding: 13px;
+}
+#sign_section .form_past .item form button {
+  background: #52845d;
+}
+#sign_section .form_past .item form .form-group {
+  margin: 6% 10px;
+}
+#sign_section .form_past .item form h2 {
+  text-align: center;
+  color: gray;
+}
+
+/*# sourceMappingURL=sign.css.map */

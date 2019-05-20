@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Blog>
+
+@* Pagination Load page start *@
+@foreach (var blog in Model)
+{
+    <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+        <div class="card blog-info"  style="margin-left: 0; width: 100%!important;">
+            <a href="/Home/BlogDetails/@(blog.Id)">
+                <img src="~/img/@blog.Image" class="card-img-top" style="width: 303px; height: 258px;" alt="Card image cap">
+            </a>
+            <div class="overlay"></div>
+            <div class="card-body">
+                <a href="/Home/BlogDetails/@(blog.Id)" class="card-title">
+
+                    @if (ViewBag.lang == "az")
+                    {
+                        @blog.Title_Az
+                    }
+                    else if (ViewBag.lang == "en")
+                    {
+                        @blog.Title
+                    }
+                    else
+                    {
+                        @blog.Title_Ru
+                    }
+
+                </a>
+                <div class="date">
+                    <span>BY EM/HÜ • @blog.Date</span>
+                </div>
+                @{
+                    string description = "";
+
+                    if (ViewBag.lang == "az")
+                    {
+
+                        string sentences = blog.Description_Az;
+
+                        char[] word = new char[] { '.' };
+
+                        string[] arr = sentences.Split(word, StringSplitOptions.None);
+
+                        for (int i = 0; i < arr.Length; i++)
+                        {
+                            if (i == 0)
+                            {
+                                description = arr[0];
+                                break;
+                            }
+                        }
+                    }
+                    else if (ViewBag.lang == "en")
+                    {
+
+                        string sentences = blog.Description;
+
+                        char[] word = new char[] { '.' };
+
+                        string[] arr = sentences.Split(word, StringSplitOptions.None);
+
+                        for (int i = 0; i < arr.Length; i++)
+                        {
+                            if (i == 0)
+                            {
+                                description = arr[0];
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        string sentences = blog.Description_Ru;
+
+                        char[] word = new char[] { '.' };
+
+                        string[] arr = sentences.Split(word, StringSplitOptions.None);
+
+                        for (int i = 0; i < arr.Length; i++)
+                        {
+                            if (i == 0)
+                            {
+                                description = arr[0];
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                <p class="card-text">
+                    @description
+                </p>
+            </div>
+        </div>
+    </div>
+}
+@* Pagination Load page end *@

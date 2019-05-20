@@ -1,0 +1,38 @@
+﻿@model List<Complaint>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="container">
+<h2>Complaints</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.Id</th>
+                    <td>@item.Fullname</td>
+                    <td>@item.Email</td>
+                    <td>@item.Subject</td>
+                    <td><textarea>@item.Message</textarea></td>
+                    <td>  <a asp-controller="Service" asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-danger">Delete</a></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+

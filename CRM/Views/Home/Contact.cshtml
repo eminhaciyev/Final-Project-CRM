@@ -1,0 +1,268 @@
+﻿@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+
+
+@model CRM.Models.ViewModel.ViewModelClasses
+@inject IViewLocalizer Localizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@* Register form start *@
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">@Localizer["register"]</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <section id="sign_section">
+                    <div class="row">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="col-md-12 form_past col-lg-12">
+                            <div class="item">
+
+                                <h2 class="">@Localizer["register"]</h2>
+                                <form method="post" asp-controller="Account" asp-action="Register" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">@Localizer["fullname"]</label>
+                                        <input type="text" name="FullName" class="form-control" id="fullname_register"
+                                               placeholder="@Localizer["enterfullname"]">
+                                        <span asp-validation-for="RegisterModel.FullName" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">@Localizer["email"]</label>
+                                        <input type="email" name="UserEmail" class="form-control" id="emailaddress_register"
+                                               aria-describedby="emailHelp" placeholder="@Localizer["enteremail"]">
+                                        <span asp-validation-for="RegisterModel.UserEmail" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="birthday">@Localizer["birthdate"]</label>
+                                        <input type="date" name="BirthDate" class="form-control" id="bithday_register"
+                                               aria-describedby="birthday" placeholder="BirthDate">
+                                        <span asp-validation-for="RegisterModel.BirthDate" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">@Localizer["password"]</label>
+                                        <input type="password" name="Password" class="form-control" id="password_register"
+                                               placeholder="@Localizer["password"]">
+                                        <span asp-validation-for="RegisterModel.Password" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">@Localizer["confirmpassword"]</label>
+                                        <input type="password" name="ComfirmPassword" class="form-control" id="confirmpassword_register"
+                                               placeholder="@Localizer["confirmpassword"]">
+                                        <span asp-validation-for="RegisterModel.ComfirmPassword" class="text-danger"></span>
+                                    </div>
+                                    <input type="submit" id="registerButton" class="btn btn-success" value="@Localizer["register"]" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+@* Register form end *@
+
+@* SignIn form start *@
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">@Localizer["signin"]</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <section id="sign_section">
+                    <div class="row">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="col-md-12 form_past col-lg-12">
+                            <div class="item">
+                                <h2 class="">@Localizer["signin"]</h2>
+                                <form method="post" asp-controller="Account" asp-action="LoginUser">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">@Localizer["email"]</label>
+                                        <input type="email" asp-for="LoginModel.UserEmail" class="form-control" id="exampleInputEmail1"
+                                               aria-describedby="emailHelp" placeholder="@Localizer["enteremail"]">
+                                        <span asp-validation-for="LoginModel.UserEmail" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">@Localizer["password"]</label>
+                                        <input type="password" asp-for="LoginModel.Password" class="form-control" id="exampleInputPassword1"
+                                               placeholder="@Localizer["password"]">
+                                        <span asp-validation-for="LoginModel.Password" class="text-danger"></span>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox"> @Localizer["rememberme"]</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-success"> @Localizer["login"]</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+    </div>
+</div>
+@* SignIn form end *@
+
+<!-- Contact (background image) start-->
+<section id="background" style="background-image:url('/img/hero_bg_1.jpg');">
+    <div class="container">
+        <div class="row">
+            <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12">
+                <h2>@Localizer["contactus"]</h2>
+                <p><a href="#">@Localizer["home"]</a> <span class="sep">></span><span class="contact">@Localizer["contact"]</span> </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact (background image) (end) -->
+
+@* Swal succes start *@
+@{ string el = "none";}
+@if (ViewBag.Status == "success")
+{
+    el = "block";
+}
+
+<div class="overlay-service"></div>
+<div class="sval" style="display:@el;">
+    <img src="~/img/succesgif.gif" style="width: 300px; height: 255px; position:absolute;" />
+    <div class="exit_swal" style="position: absolute; right: 11px; color: #373232; font-size: 20px; cursor: pointer;">
+        <i class="fas fa-times"></i>
+    </div>
+    <div class="inner_sval">
+        <h3 style="position: absolute; font-size: 18px; margin: -7px 13px;">Əməliyyat uğurla yerinə yetirildi!</h3>
+    </div>
+</div>
+@* Swal succes end *@
+
+@* Contact section start *@
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                <div class="contact-form">
+                    <form method="post" asp-controller="Home" asp-action="Contact">
+                        <div class="input-group">
+                            <label asp-for="@(Model.Contacts.Fullname)" class="input-labels">@Localizer["fullname"]</label>
+                            <input type="text" asp-for="@(Model.Contacts.Fullname)" placeholder="@Localizer["fullname"]" class="input-size" name="fullname" value="" />
+                            <span asp-validation-for="@(Model.Contacts.Fullname)" class="text-danger"></span>
+
+                        </div>
+                        <div class="input-group">
+                            <label asp-for="@(Model.Contacts.EmailOrNumber)" class="input-labels">@Localizer["email"]</label>
+                            <input type="email" asp-for="@(Model.Contacts.EmailOrNumber)" placeholder="@Localizer["email"]" class="input-size" name="email" value="" />
+                            <span asp-validation-for="@(Model.Contacts.EmailOrNumber)" class="text-danger"></span>
+                        </div>
+                        <div class="input-group">
+                            <label asp-for="@(Model.Contacts.Subject)" class="input-labels">@Localizer["subject"]</label>
+                            <input type="text" asp-for="@(Model.Contacts.Subject)" placeholder="@Localizer["entersubject"]" class="input-size" name="subject" value="" />
+                            <span asp-validation-for="@(Model.Contacts.Subject)" class="text-danger"></span>
+                        </div>
+                        <div class="input-group">
+                            <label asp-for="@(Model.Contacts.Message)" class="input-labels">@Localizer["message"]</label>
+                            <textarea type="text" asp-for="@(Model.Contacts.Message)" cols="30" rows="10" placeholder="@Localizer["writesomethingus"]"
+                                      class="textarea-size" name="message"></textarea>
+                        </div>
+                        <span asp-validation-for="@(Model.Contacts.Message)" class="text-danger"></span>
+
+                        <button type="submit" class="send">@Localizer["send"]</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                <div class="contact-info" style="margin-top: 42px;">
+                    <h4 class="contact-header">@Localizer["contactinfo"]</h4>
+                    <h5 class="address">@Localizer["address"]</h5>
+                    <p class="location-avenue"> Nizami küç. 203B, AF Business House, 2-ci mərtəbə</p>
+                    <h5 class="phone-header">@Localizer["phone"]</h5>
+                    <p class="phone-number">+994 51 300 77 99</p>
+                    <p class="phone-number">+994 55 379 54 33</p>
+                    <h5>@Localizer["email"]</h5>
+                    <p class="contact-email">eminah@code.edu.az</p>
+                    <p class="contact-email">huseyinekh@code.edu.az</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@* Contact section end *@
+
+@section Scripts{
+    <style>
+        .sval .inner_sval{
+            margin: 22px 31px;
+    }
+    .sval h3{
+        color: white;
+}
+        .sval {
+            display: @el;
+            z-index: 4;
+            width: 300px;
+            height: 255px;
+            border-radius: 3px;
+            background: white;
+            box-shadow: 1px -1px 20px 11px #120435;
+            transform: translate(-50%,-50%);
+            left: 50%;
+            top: 50%;
+            position: absolute;
+         }
+
+    </style>
+
+    <script>
+        $(document).ready(function () {
+
+            $(".textarea-size").html("")
+
+            $(".overlay-service").css({
+                "display":"@el"
+            })
+
+
+            $(".overlay-service").click(function () {
+                $(".overlay-service").css({
+                         "display": "none"
+                })
+                $(".sval").css({
+                         "display": "none"
+                })
+            })
+
+            $(".exit_swal").click(function () {
+                $(".overlay-service").css({
+                    "display": "none"
+                })
+                $(".sval").css({
+                    "display": "none"
+                })
+            })
+        })
+    </script>
+}
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>

@@ -1,0 +1,49 @@
+﻿@model About
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <form method="post" enctype="multipart/form-data" style="margin-left: 15px;">
+            <h2>Edit</h2>
+            <div class="form-group">
+                @*<label asp-for="Title"></label>
+            <input type="text" class="form-control" placeholder="Title_En" />
+            <span asp-validation-for="Title"></span>*@
+
+
+                @Html.LabelFor(s => s.Description)
+                @Html.TextBoxFor(s => s.Description, new { @class = "form-control", type = "text", placeholder = "Description_En" })
+                @Html.ValidationMessageFor(s => s.Description, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @*<label asp-for="TitleAz"></label>
+            <input type="text" class="form-control" placeholder="Title_Az" />
+            <span asp-validation-for="TitleAz"></span>*@
+
+                @Html.LabelFor(s => s.Description_Az)
+                @Html.TextBoxFor(s => s.Description_Az, new { @class = "form-control", type = "text", placeholder = "Description_Az" })
+                @Html.ValidationMessageFor(s => s.Description_Az, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @*<label asp-for="TitleRu"></label>
+            <input type="text" class="form-control" placeholder="Title_Ru" />
+            <span asp-validation-for="TitleRu"></span>*@
+
+                @Html.LabelFor(s => s.Description_Ru)
+                @Html.TextBoxFor(s => s.Description_Ru, new { @class = "form-control", type = "text", placeholder = "Description_Ru" })
+                @Html.ValidationMessageFor(s => s.Description_Ru, null, new { @class = "text-danger" })
+            </div>
+
+            <input type="submit" class="btn btn-outline-success" value="Edit" />
+        </form>
+    </div>
+</div>
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}

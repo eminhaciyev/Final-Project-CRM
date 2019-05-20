@@ -1,0 +1,454 @@
+﻿@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+
+@model CRM.Models.ViewModel.ViewModelClasses
+@inject IViewLocalizer Localizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
+@{
+    ViewData["Title"] = "Service";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@* Register form start *@
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">@Localizer["register"]</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <section id="sign_section">
+                    <div class="row">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="col-md-12 form_past col-lg-12">
+                            <div class="item">
+
+                                <h2 class="">@Localizer["register"]</h2>
+                                <form method="post" asp-controller="Account" asp-action="Register" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">@Localizer["fullname"]</label>
+                                        <input type="text" name="FullName" class="form-control" id="fullname_register"
+                                               placeholder="@Localizer["enterfullname"]">
+                                        <span asp-validation-for="RegisterModel.FullName" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">@Localizer["email"]</label>
+                                        <input type="email" name="UserEmail" class="form-control" id="emailaddress_register"
+                                               aria-describedby="emailHelp" placeholder="@Localizer["enteremail"]">
+                                        <span asp-validation-for="RegisterModel.UserEmail" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="birthday">@Localizer["birthdate"]</label>
+                                        <input type="date" name="BirthDate" class="form-control" id="bithday_register"
+                                               aria-describedby="birthday" placeholder="BirthDate">
+                                        <span asp-validation-for="RegisterModel.BirthDate" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">@Localizer["password"]</label>
+                                        <input type="password" name="Password" class="form-control" id="password_register"
+                                               placeholder="@Localizer["password"]">
+                                        <span asp-validation-for="RegisterModel.Password" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">@Localizer["confirmpassword"]</label>
+                                        <input type="password" name="ComfirmPassword" class="form-control" id="confirmpassword_register"
+                                               placeholder="@Localizer["confirmpassword"]">
+                                        <span asp-validation-for="RegisterModel.ComfirmPassword" class="text-danger"></span>
+                                    </div>
+                                    <input type="submit" id="registerButton" class="btn btn-success" value="@Localizer["register"]" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Register form end *@
+
+
+@* SignIn form start *@
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">@Localizer["signin"]</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <section id="sign_section">
+                    <div class="row">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="col-md-12 form_past col-lg-12">
+                            <div class="item">
+                                <h2 class="">@Localizer["signin"]</h2>
+                                <form method="post" asp-controller="Account" asp-action="LoginUser">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">@Localizer["email"]</label>
+                                        <input type="email" asp-for="LoginModel.UserEmail" class="form-control" id="exampleInputEmail1"
+                                               aria-describedby="emailHelp" placeholder="@Localizer["enteremail"]">
+                                        <span asp-validation-for="LoginModel.UserEmail" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">@Localizer["password"]</label>
+                                        <input type="password" asp-for="LoginModel.Password" class="form-control" id="exampleInputPassword1"
+                                               placeholder="@Localizer["password"]">
+                                        <span asp-validation-for="LoginModel.Password" class="text-danger"></span>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox"> @Localizer["rememberme"]</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-success"> @Localizer["login"]</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* SignIn form end *@
+
+
+@* Swal Success start *@
+
+@{ string el = "none";}
+@if (ViewBag.Status == "success")
+{
+    el = "block";
+}
+<div class="overlay-service"></div>
+
+<div class="sval" style="display:@el;">
+
+    <img src="~/img/succesgif.gif" style="width: 300px; height: 255px; position:absolute;" />
+        <div class="exit_swal" style="position: absolute; right: 11px; color: #373232; font-size: 20px; cursor: pointer;">
+            <i class="fas fa-times"></i>
+        </div>
+    <div class="inner_sval">
+        <h3 style="position: absolute; font-size: 18px; margin: -7px 13px;">Əməliyyat uğurla yerinə yetirildi!</h3>
+    </div>
+</div>
+
+@* Swal Success end *@
+
+@* Service section start *@
+
+<section id="service">
+    <div class="container">
+        <div class="row elements">
+
+            @*----------------SERVICE ABOUT Start-------------*@
+            <div class="service-content col-12 col-sm-12 col-md-12 col-lg-12">
+                <h4>@Localizer["service"]</h4>
+            </div>
+            <div class="company-name col-12 col-sm-12 col-md-12 col-lg-12">
+                <h3>ICT SERVICE AZERBAIJAN</h3>
+            </div>
+            <div class="company-phone col-12 col-sm-12 col-md-12 col-lg-12">
+                <i class="fas fa-phone"></i>
+                <p>+994 51 300 77 99 | +994 55 379 54 33</p>
+            </div>
+            <i class="far fa-times-circle exit_form"></i>
+            @*----------------SERVICE ABOUT END-------------*@
+
+            <div class="col-12 col-sm-12 col-md-6 form_page col-lg-6">
+                <div class="borrow  for_form">
+                    <div class="form_info">
+                        <form method="post" asp-controller="Home" asp-action="WarningCashCardPage">
+                            <div class="form-group">
+                                <label class="info-label" for="">@Localizer["enterhomenumber"]</label>
+                                <input type="phone" class="phone-info" />
+                                <input type="submit" class="btn btn-outline-primary" value="@Localizer["showinfo"]">
+                                <p class="info-desc">@Localizer["youcanseeinfo"]</p>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 your-info">
+                        <span><i class="fas fa-money-check-alt"></i></span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 your-info">
+                        <h4>@Localizer["showmyinformations"]</h4>
+                    </div>
+                </div>
+            </div>
+
+
+            @*----------------CASH YOUR CARD Start-------------*@
+            <div class="col-12 col-sm-12 col-md-6 form_page col-lg-6">
+                <div class="borrow for_form">
+                    <div class="form_info">
+                        <h3 class="fill-your-cv">@Localizer["cashcard"]</h3>
+                        <form method="post" asp-controller="Home" asp-action="WarningCashCardPage" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="name">@Localizer["fullname"]</label>
+                                <input type="text" class="form-cv-input" required placeholder="Enter your Fullname" name="name" id="name" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="payphone">@Localizer["enteryournumber"]</label>
+                                <input type="phone" class="form-cv-input" required placeholder="@Localizer["enteryournumber"]" name="payphone" id="payphone" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="payphone">@Localizer["enteryouremail"]</label>
+                                <input type="email" class="form-cv-input" required name="payphone" placeholder="@Localizer["enteryouremail"]" id="enteryouremail" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="cv-card">@Localizer["choosechashing"]</label>
+                                <select class="form-cv-input" name="balanceid">
+                                    <option selected>Choose one</option>
+                                    <option value="1">1 AZN</option>
+                                    <option value="2">5 AZN</option>
+                                    <option value="4">10 AZN</option>
+                                    <option value="5">50 AZN</option>
+                                    <option value="6">100 AZN</option>
+                                    <option value="7">200 AZN</option>
+                                </select>
+                            </div>
+                            <input type="submit" class="btn btn-outline-success" value="@Localizer["pay"]">
+                        </form>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 your-info">
+                        <span><i class="fab fa-cc-visa"></i></span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 your-info">
+                        <h4>@Localizer["increaseyourcardsamount"]</h4>
+                    </div>
+                </div>
+            </div>
+            @*----------------CASH YOUR CARD END-------------*@
+
+
+            @*----------------COMPLAINT Start-------------*@
+            <div class="col-12 col-sm-12 col-md-6 form_page col-lg-6">
+                <div class="borrow for_form">
+                    <div class="form_info">
+                        <h3 class="fill-your-cv">@Localizer["reportyourcomplaints"]</h3>
+                        <form method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label asp-for="@(Model._Complaint.Fullname)">@Localizer["fullname"]</label>
+                                <input asp-for="@(Model._Complaint.Fullname)" value="" required type="text" class="user-complaint" name="namecomplaint" id="namecomplaint">
+                                <span asp-validation-for="@(Model._Complaint.Fullname)" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@(Model._Complaint.Email)">@Localizer["email"]</label>
+                                <input asp-for="@(Model._Complaint.Email)" value="" required type="text" class="user-complaint" name="emailcomplaint" id="emailcomplaint">
+                                <span asp-validation-for="@(Model._Complaint.Email)" class="text-danger"></span>
+
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@(Model._Complaint.Subject)">@Localizer["subject"]</label>
+                                <input asp-for="@(Model._Complaint.Subject)" value="" required type="text" class="user-complaint" name="subjectcomplaint"
+                                       id="subjectcomplaint">
+                                <span asp-validation-for="@(Model._Complaint.Subject)" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@(Model._Complaint.Message)">@Localizer["message"]</label>
+                                <textarea asp-for="@(Model._Complaint.Message)" required type="text" class="user-complaint" name="messagecomplaint"
+                                          id="messagecomplaint"></textarea>
+                                <span asp-validation-for="@(Model._Complaint.Message)" class="text-danger"></span>
+                            </div>
+                            <input type="submit" class="btn btn-outline-success report" value="@Localizer["report"]">
+                        </form>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 your-info">
+                        <span><i class="fas fa-comment-dots"></i></span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 your-info">
+                        <h4>@Localizer["reportyourcomplaints"]</h4>
+                    </div>
+                </div>
+            </div>
+            @*----------------COMPLAINT END-------------*@
+
+
+            @*----------------CV Start-------------*@
+            <div class="col-12 col-sm-12 col-md-6 form_page col-lg-6">
+                <div class="borrow for_form">
+                    <div class="form_info">
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <h3 class="fill-your-cv">FILL YOUR CV</h3>
+                            <form method="post" asp-controller="Home" asp-action="CV" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label asp-for="_CV.Fullname" for="name">FULLNAME</label>
+                                    <input asp-for="_CV.Fullname" required type="text" class="form-cv-input" value="" id="namesurname">
+                                    <span class="badge badge-danger" asp-validation-for="_CV.Fullname"></span>
+
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="_CV.Email" for="email">EMAIL</label>
+                                    <input asp-for="_CV.Email" value="" type="email" class="form-cv-input" id="email">
+                                    <span class="badge badge-danger" asp-validation-for="_CV.Email"></span>
+
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="_CV.Description" for="about-cv">ABOUT YOU</label>
+                                    <textarea asp-for="_CV.Description" type="text" class="form-cv-input emptyArea"
+                                              id="aboutcv"></textarea>
+                                    <span class="badge badge-danger" asp-validation-for="_CV.Email"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="_CV.CV_File" for="about-file">CHOOSE YOUR CV</label>
+                                    <input asp-for="_CV.CV_File" required type="file" class="form-cv-input" id="aboutfile" />
+                                </div>
+                                <input type="submit" class="btn btn-outline-success" value="SEND YOUR CV">
+                            </form>
+                        }
+                        else
+                        {
+                            <h3 style="font-family: monospace; color: #03089d; text-shadow: 1px 1px 3px #f6fa02;">
+                                Saytımızda qeydiyyatdan keçin və bizim komandanın bir üzvü olmaq şansını əldə <br />
+                                etmək ücün CV- lərinizi göndərin!
+                            </h3>
+                        }
+                    </div>
+
+                    <div id="mirta" class="col-12 col-sm-12 col-md-12 col-lg-12 your-info">
+                        <span><i class="fas fa-file-pdf"></i></span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 your-info">
+                        <h4>APPLY FOR JOB</h4>
+                    </div>
+                </div>
+            </div>
+            @*----------------CV End-------------*@
+
+            @*---------LIKE SYSTEM------- *@
+            <h3>
+                @{ string redirect = "";
+                    string feedback = "";
+                }
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    redirect = "";
+                }
+                else
+                {
+                    redirect = "href=/Account/LoginForm";
+                }
+                @if (Model.Feedbacks.Like)
+                {
+                    feedback = "Bizi bəyəndiyinizə görə təşəkkür edirik";
+
+                    <a @redirect class="like" style=" cursor: pointer;"><i style='color: blue;' class='far fa-smile-beam smileicon'></i></a> <span class="userLikeCount">@(Model.Feedbacks.LikeCount)</span> <span>likes</span>
+
+                    <br />
+                    <span style="font-family: inherit; font-weight: bold; color: #161664; text-shadow: 4px 9px 5px #686565;">@feedback</span>
+                }
+                else
+                {
+                    feedback = "Bizi bəyənin";
+                    <a @redirect style="color:black;" class="like"><i style=" cursor: pointer;" class="far fa-frown"></i></a>
+                    <span class="userLikeCount">@(Model.Feedbacks.LikeCount)</span> <span>likes</span> <br />
+                    <span style="    font-family: inherit; font-weight: bold; color: #161664; text-shadow: 4px 9px 5px #686565;">@feedback</span>
+                }
+            </h3>
+        </div>
+    </div>
+</section>
+
+@* Service section end *@
+
+
+@section Scripts{
+    <style>
+        .sval .inner_sval{
+            margin: 22px 31px;
+    }
+    .sval h3{
+        color: white;
+}
+        .sval {
+            display: @el;
+            z-index: 4;
+            width: 300px;
+            height: 255px;
+            border-radius: 3px;
+            background: white;
+            box-shadow: 1px -1px 20px 11px #120435;
+            transform: translate(-50%,-50%);
+            left: 50%;
+            top: 50%;
+            position: absolute;
+}
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $(".user-complaint").html("");
+            $(".emptyArea").html("");
+
+            $(".overlay-service").css({
+                "display":"@el"
+            })
+
+
+            $(".overlay-service").click(function () {
+                $(".overlay-service").css({
+                         "display": "none"
+                })
+                $(".sval").css({
+                         "display": "none"
+                })
+            })
+
+            $(".exit_swal").click(function () {
+                $(".overlay-service").css({
+                    "display": "none"
+                })
+                $(".sval").css({
+                    "display": "none"
+                })
+            })
+
+            $(".like").click(function () {
+                console.log($(".userLikeCount").text())
+                $.ajax({
+                     url: "/Home/Like/",
+                    type: "POST",
+                    data: {
+                         likecount: $(".userLikeCount").text()
+                    },
+                    success: function (res) {
+                        $(".userLikeCount").text(res.likecount);
+                             let isLiked = res.isliked;
+                             if (isLiked) {
+                            $(".like").html("<i class='far fa-frown'></i>");
+                             }
+                             else {
+                            $(".like i").css("display", "none");
+                            $(".like").html("<i style='color: blue'; class='far fa-smile-beam smileicon'></i>");
+                             }
+                             console.log(res.status);
+                         }
+                     })
+            })
+        })
+    </script>

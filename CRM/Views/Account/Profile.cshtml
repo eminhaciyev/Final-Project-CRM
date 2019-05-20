@@ -1,0 +1,53 @@
+﻿@model CRM.Models.InnerModel.User
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2 style="text-align:center;">Edit Profile</h2>
+<section id="sign_section">
+    <div class="row">
+        <div class="col-md-12 form_past col-lg-12">
+            <div class="item">
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                <h2 class="">Profile</h2>
+                <form method="post" asp-controller="Account" asp-action="Profile" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Full name</label>
+                        <input type="text" name="FullName" class="form-control"
+                               placeholder="Enter Fullname">
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">UserName</label>
+                        <input type="email" name="UserName" class="form-control"
+                               aria-describedby="emailHelp" placeholder="Enter Email">
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" name="Email" class="form-control"
+                               aria-describedby="emailHelp" placeholder="Enter Email">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" name="PasswordHash" class="form-control"
+                               placeholder="Password">
+                        <span asp-validation-for="PasswordHash" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" asp-route="" class="btn btn-success">Edit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

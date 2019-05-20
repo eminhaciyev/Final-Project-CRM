@@ -1,0 +1,70 @@
+﻿@model WhyChooseUs
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<div class="container">
+    <div class="row">
+        <form method="post" enctype="multipart/form-data" style="margin-left: 15px;">
+            <h2>Edit</h2>
+            <div class="alert alert-danger" role="alert">
+                Bu postu silmək istədiyinizə əminsiziniz??
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(s => s.IconClass)
+                @Html.TextBoxFor(s => s.IconClass, new { @class = "form-control", type = "text", placeholder = "Icon Class" })
+                @Html.ValidationMessageFor(s => s.IconClass, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(s => s.Title)
+                @Html.TextBoxFor(s => s.Title, new { @class = "form-control", type = "text", placeholder = "Title_En" })
+                @Html.ValidationMessageFor(s => s.Title, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(s => s.Title_Az)
+                @Html.TextBoxFor(s => s.Title_Az, new { @class = "form-control", type = "text", placeholder = "Title_Az" })
+                @Html.ValidationMessageFor(s => s.Title_Az, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(s => s.Title_Ru)
+                @Html.TextBoxFor(s => s.Title_Ru, new { @class = "form-control", type = "text", placeholder = "Title_Ru" })
+                @Html.ValidationMessageFor(s => s.Title_Ru, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(s => s.Description)
+                @Html.TextBoxFor(s => s.Description, new { @class = "form-control", type = "text", placeholder = "Description_En" })
+                @Html.ValidationMessageFor(s => s.Description, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(s => s.Description_Az)
+                @Html.TextBoxFor(s => s.Description_Az, new { @class = "form-control", type = "text", placeholder = "Description_Az" })
+                @Html.ValidationMessageFor(s => s.Description_Az, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(s => s.Description_Ru)
+                @Html.TextBoxFor(s => s.Description_Ru, new { @class = "form-control", type = "text", placeholder = "Description_Ru" })
+                @Html.ValidationMessageFor(s => s.Description_Ru, null, new { @class = "text-danger" })
+            </div>
+
+            <input type="submit" class="btn btn-outline-success" value="Delete" />
+        </form>
+
+    </div>
+</div>
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
+
+
+
